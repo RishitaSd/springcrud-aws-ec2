@@ -34,11 +34,11 @@ public class EmployeeService {
             updatedEmployee.setId(id);
             return employeeRepository.save(updatedEmployee);
         }
-        return null; // Handle error appropriately
+        return null;
     }
 
     public void deleteEmployee(Long id) {
         employeeRepository.deleteById(id);
     }
-
 }
+
