@@ -2,24 +2,26 @@ version: 0.2
 
 phases:
   install:
+    runtime-versions:
+      docker: 18
     commands:
       - echo Installing Docker...
       - yum install -y docker
-      - nohup /usr/bin/dockerd &  # Start Docker daemon in the background
-      - sleep 15  # Allow Docker time to start
+      - service docker start  # start the Docker service
+      - docker --version  # Verify Docker installation
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - $(aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 235494789667.dkr.ecr.us-east-1.amazonaws.com)
+      - $(aws ecr get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin 235494789667.dkr.ecr.us-east-1.amazonaws.com)
   build:
     commands:
       - echo Building the Docker image...
-      - docker build -t springboot-app .
-      - docker tag springboot-app:latest 235494789667.dkr.ecr.us-east-1.amazonaws.com/springboot-app:latest
+      - sudo docker build -t springboot-app .
+      - sudo docker tag springboot-app:latest 235494789667.dkr.ecr.us-east-1.amazonaws.com/springboot-app:latest
   post_build:
     commands:
       - echo Pushing the Docker image to Amazon ECR...
-      - docker push 235494789667.dkr.ecr.us-east-1.amazonaws.com/springboot-app:latest
+      - sudo docker push 235494789667.dkr.ecr.us-east-1.amazonaws.com/springboot-app:latest
 
 artifacts:
   files:
