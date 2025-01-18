@@ -16,6 +16,9 @@ phases:
       - echo Building the Docker image...
       - sudo docker build -t springboot-app .
       - sudo docker tag springboot-app:latest 235494789667.dkr.ecr.us-east-1.amazonaws.com/springboot-app:latest
+      - echo Creating imagedefinitions.json file...
+      - echo '[{"name":"springboot-container","imageUri":"235494789667.dkr.ecr.us-east-1.amazonaws.com/springboot-app:latest"}]' > imagedefinitions.json
+
   post_build:
     commands:
       - echo Pushing the Docker image to Amazon ECR...
