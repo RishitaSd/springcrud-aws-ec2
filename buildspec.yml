@@ -5,7 +5,7 @@ phases:
     commands:
       - echo Installing Docker...
       - sudo yum install -y docker
-      - sudo service docker start  # start Docker service
+      - sudo docker start  # start Docker service
       - sudo docker --version  # Verify Docker installation
   pre_build:
     commands:
