@@ -2,8 +2,6 @@ version: 0.2
 
 phases:
   install:
-    runtime-versions:
-      # No need for docker runtime version here; CodeBuild uses Docker by default.
     commands:
       - echo Installing Docker...
       - sudo yum install -y docker
