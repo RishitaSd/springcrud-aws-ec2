@@ -5,8 +5,8 @@ phases:
     commands:
       - echo Installing Docker...
       - yum install -y docker
-      - service docker start
-      - chkconfig docker on
+      - nohup /usr/bin/dockerd &  # Start Docker daemon in the background
+      - sleep 15  # Allow Docker time to start
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
