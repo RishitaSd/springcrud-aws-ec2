@@ -17,7 +17,7 @@ phases:
       - sudo docker build -t springboot-app .
       - sudo docker tag springboot-app:latest 235494789667.dkr.ecr.us-east-1.amazonaws.com/my-springboot-app-repo-22-jan:latest
       - echo Creating imagedefinitions.json file...
-      - echo '[{"name":"springboot-container","imageUri":"235494789667.dkr.ecr.us-east-1.amazonaws.com/my-springboot-app-repo-22-jan:latest"}]' > imagedefinitions.json
+      - echo '[{"name":"22jancontainer","imageUri":"235494789667.dkr.ecr.us-east-1.amazonaws.com/my-springboot-app-repo-22-jan:latest"}]' > imagedefinitions.json
       - cat imagedefinitions.json
 
   post_build:
